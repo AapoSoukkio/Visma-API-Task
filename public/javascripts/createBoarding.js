@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("boarding-form"); 
+    const hiddenForm = document.getElementById("hidden-form");
+    const createBoardingButton = document.getElementById("create-boarding-button");
 
     form.addEventListener("submit", async function (event) {
         event.preventDefault(); 
@@ -8,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const pricePackage = document.getElementById("pricePackage").value;
 
         try {
+            // Disable the button when the create boarding is clicked
+            createBoardingButton.disabled = true;
+
             // POST request to the server
             const response = await fetch('/create-boarding', { 
                 method: "POST",
@@ -19,9 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 const result = await response.json();
-                alert(result.message); // Show a simple alert
+                alert(result.message);
+
+                // Show the hidden form
+                hiddenForm.style.display = "block";
             } else {
-                alert("Boarding creation failed: " + response.statusText); // Show an alert for the error
+                alert("Boarding creation failed: " + response.statusText);
             }
         } catch (error) {
             // Handle network errors by showing an error message

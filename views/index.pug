@@ -12,6 +12,23 @@ html
       label(for="pricePackage") Price Package:
       input(type="text" id="pricePackage" name="pricePackage" required readonly value="power") 
       br
-      button(type="submit") Create Boarding
+      button(type="submit", id="create-boarding-button", onclick="disableButton()") Create Boarding
+    <form id="hidden-form" style="display: none;">
+      label(for="companyName") Company name:
+      input(type="text" id="companyName" name="companyName" required) 
+      br
+      label(for="companyPhone") Company phone:
+      input(type="text" id="companyPhone" name="companyPhone" required) 
+      br
+      label(for="companyAddressStreet") Company Address Street:
+      input(type="text" id="companyAddressStreet" name="companyAddressStreet" required) 
+      br
+      label(for="companyPostal") Company postal:
+      input(type="text" id="companyPostal" name="companyPostal" required) 
+      br
+      label(for="companyCity") Company city:
+      input(type="text" id="companyCity" name="companyCity" required) 
+      br
+      button(type="button") Update company information
     div(id="result-message")
     script(src="/javascripts/createBoarding.js")
