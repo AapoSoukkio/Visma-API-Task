@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
       try {
         // POST request to the server
-        const response = await fetch("/create-boarding", { 
+        const response = await fetch('/create-boarding', { 
           method: "POST",
           headers: {
             "Content-Type": "application/json",

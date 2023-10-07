@@ -4,14 +4,13 @@ html
     title= title 
   body
     h1= title
-form(id="boarding-form")
+    form(id="boarding-form")
       label(for="vatNumber") VAT Number:
       input(type="text" id="vatNumber" name="vatNumber" required)
       br
       label(for="pricePackage") Price Package:
       input(type="text" id="pricePackage" name="pricePackage" required)
       br
-      button(type="submit") Create Contract
+      button(type="submit") Create Boarding
     div(id="result-message")
-
- script(src="/javascripts/createBoarding.js") 
+    script(src="/javascripts/createBoarding.js")

@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const boardingService = require('../services/boardingService'); 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Visma Boarding Creator' });
-});
-
 /* POST to create boarding. */
 router.post('/create-boarding', async function(req, res, next) {
   try {
