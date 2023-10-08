@@ -15,7 +15,7 @@ router.post('/create-boarding', async function (req, res, next) {
         const response = await boardingService.createBoarding({ vatNumber, pricePackage });
 
         console.log('Response:', response.data);
-
+        
         const id = response.data.id;
         res.status(200).json({ message: 'Boarding created successfully', id });
     } catch (error) {
