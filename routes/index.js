@@ -5,6 +5,8 @@ const updateCompanyInfoService = require('../services/updateCompanyInfoService')
 const addMissingCompanyInfoService = require('../services/addMissingCompanyInfoService'); 
 const createSignService = require('../services/createSignService'); 
 
+//TODO: Fix the routing problem so you don't need to keep all in here
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Visma Boarding Creator' });
@@ -13,25 +15,20 @@ router.get('/', function(req, res, next) {
 /* POST to create boarding. */
 router.post('/create-boarding', async function(req, res, next) {
   try {
-    // Extract form data from the request body
     const { vatNumber, pricePackage } = req.body;
-
-    console.log('Request Payload:', { vatNumber, pricePackage });
 
     // Call the boardingService to handle the API request
     const response = await boardingService.createBoarding({ vatNumber, pricePackage });
-
-    console.log('Response:', response.data);
-    
     const id = response.data.id;
+    
     res.status(200).json({ message: 'Boarding created successfully', id });
   } catch (error) {
-    if (error.response && error.response.status) {
+    if (error.response.status) {
       console.error('Error Status Code:', error.response.status);
       var statusCode = error.response.status;
     }
 
-    if (error.response && error.response.data.validationErrorMessages) {
+    if (error.response.data.validationErrorMessages) {
       console.error('Validation Error Messages:', error.response.data.validationErrorMessages);
     }
     console.error('Error:', error);
@@ -55,7 +52,7 @@ router.patch('/:id', async function (req, res, next) {
     } else {
       console.error('Error Status Code:', response.status);
 
-      if (response.data && response.data.validationErrorMessages) {
+      if (response.data.validationErrorMessages) {
         console.error('Validation Error Messages:', response.data.validationErrorMessages);
       }
 
@@ -64,7 +61,7 @@ router.patch('/:id', async function (req, res, next) {
   } catch (error) {
     console.error('Error:', error);
 
-    if (error.response && error.response.status) {
+    if (error.response.status) {
       console.error('Error Status Code:', error.response.status);
       var statusCode = error.response.status;
     }
@@ -73,7 +70,7 @@ router.patch('/:id', async function (req, res, next) {
   }
 });
 
-/* PUT to add missing company info. */
+/* PUT to add required company info. */
 router.put('/:id', async function (req, res, next) {
   try {
     const id = req.params.id;
@@ -86,7 +83,7 @@ router.put('/:id', async function (req, res, next) {
     } else {
       console.error('Error Status Code:', response.status);
 
-      if (response.data && response.data.validationErrorMessages) {
+      if (response.data.validationErrorMessages) {
         console.error('Validation Error Messages:', response.data.validationErrorMessages);
       }
 
@@ -95,7 +92,7 @@ router.put('/:id', async function (req, res, next) {
   } catch (error) {
     console.error('Error:', error);
 
-    if (error.response && error.response.status) {
+    if (error.response.status) {
       console.error('Error Status Code:', error.response.status);
       var statusCode = error.response.status;
     }
@@ -114,15 +111,14 @@ router.post('/:id/sign', async function(req, res, next) {
 
     res.status(200).json({ message: 'Sign created successfully', id });
   } catch (error) {
-    if (error.response && error.response.status) {
+    if (error.response.status) {
       console.error('Error Status Code:', error.response.status);
       var statusCode = error.response.status;
     }
 
-    if (error.response && error.response.data.validationErrorMessages) {
+    if (error.response.data.validationErrorMessages) {
       console.error('Validation Error Messages:', error.response.data.validationErrorMessages);
     }
-    // console.error('Error:', error);
 
     res.status(statusCode || 500).json({ error: error.message });
   }

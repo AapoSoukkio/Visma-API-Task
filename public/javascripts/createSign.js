@@ -13,7 +13,7 @@ document.getElementById('create-sign').addEventListener('click', async function 
         if (response.ok) {
             const result = await response.json();
             alert(result.message);
-            // Refresh the page after OK is clicked
+            // Refresh the page after sign created
             window.location.href = window.location.href;
         } else {
             console.error('Error:', response.statusText);
@@ -21,6 +21,6 @@ document.getElementById('create-sign').addEventListener('click', async function 
         }
     } catch (error) {
         console.error('Network error:', error);
-        alert('Network error'); // Handle network errors
+        alert('Network error'); 
     }
 });

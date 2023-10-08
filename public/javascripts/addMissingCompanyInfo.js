@@ -28,7 +28,6 @@ document.getElementById('add-missing-company-info').addEventListener('click', as
         if (response.ok) {
             const result = await response.json();
             alert(result.message);
-            // Show hiden form
             createSignDiv.style.display = "block";
         } else {
             console.error('Error:', response.statusText);
@@ -36,7 +35,7 @@ document.getElementById('add-missing-company-info').addEventListener('click', as
         }
     } catch (error) {
         console.error('Network error:', error);
-        alert('Network error'); // Handle network errors
+        alert('Network error'); 
     }
 });
 

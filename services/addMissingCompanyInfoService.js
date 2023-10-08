@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-// Function to add missing company information by ID
 async function addMissingCompanyInfoById(id, data) {
   const apiUrl = `https://dev-boarding.vismapay.com/boardings/${id}`;
   const headers = {
@@ -8,10 +7,8 @@ async function addMissingCompanyInfoById(id, data) {
     Accept: '*/*',
   };
 
-  console.log('Value of a specific property from data:', data.companyName);
-
-  // Hardcoded data for adding missing company info
-  const missingCompanyInfo = {
+  // Hard coded data for adding required company info
+  const requiredCompanyInfo = {
     formData: {
       businessType: 5999,
       estimatedTotalRevenue: 1300,
@@ -63,7 +60,7 @@ async function addMissingCompanyInfoById(id, data) {
   return axios({
     method: 'put', 
     url: apiUrl,
-    data: missingCompanyInfo, 
+    data: requiredCompanyInfo, 
     headers: headers,
   });
 }

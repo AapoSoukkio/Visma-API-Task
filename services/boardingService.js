@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-// Function to create a boarding
 async function createBoarding({ vatNumber, pricePackage }) {
   const apiUrl = 'https://dev-boarding.vismapay.com/boardings/';
   const requestData = {

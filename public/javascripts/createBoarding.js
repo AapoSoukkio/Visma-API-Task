@@ -10,10 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const pricePackage = document.getElementById("pricePackage").value;
 
         try {
-            // Disable the button when the create boarding is clicked
             createBoardingButton.disabled = true;
 
-            // POST request to the server
             const response = await fetch('/create-boarding', { 
                 method: "POST",
                 headers: {
@@ -32,14 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 console.log(result.id);
                 alert(result.message);
-
-                // Show the hidden form
                 updateCompanyForm.style.display = "block";
             } else {
                 alert("Boarding creation failed: " + response.statusText);
             }
         } catch (error) {
-            // Handle network errors by showing an error message
             console.error(error);
             alert("Network error");
         }
