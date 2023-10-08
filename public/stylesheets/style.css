@@ -1,8 +1,54 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
 }
 
-a {
-  color: #00B7FF;
+form {
+  max-width: 300px; 
+  margin: 0 auto; 
+  text-align: left; 
+}
+
+label {
+  display: block; 
+  margin-bottom: 10px; 
+  font-weight: bold; 
+}
+
+input[type="text"] {
+  width: 100%; 
+  padding: 8px; 
+  margin-bottom: 20px; 
+}
+
+button[type="submit"] {
+  background-color: #00B7FF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px; 
+}
+
+button[type="submit"] {
+  display: block;
+  margin: 0 auto;
+}
+
+button[type="button"] {
+  background-color: #00B7FF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px; 
+}
+
+button[type="button"] {
+  display: block;
+  margin: 0 auto;
 }
