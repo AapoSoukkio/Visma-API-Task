@@ -49,7 +49,7 @@ router.patch('/:id', async function (req, res, next) {
     console.log('Response:', response.data);
 
     if (response.status === 200) {
-      res.status(200).json({ message: 'Company information updated successfully' });
+      res.status(200).json({ message: 'Company address information updated successfully' });
     } else {
       console.error('Error Status Code:', response.status);
 

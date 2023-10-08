@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const updateForm = document.getElementById("update-company-form");
+    const addMissingCompanyInfoDiv = document.getElementById("add-missing-information-div");
     const boardingIdInput = document.getElementById("boardingId");
     const companyNameInput = document.getElementById("companyName");
     const companyPhoneInput = document.getElementById("companyPhone");
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         try {
-            // Send a PATCH request to the server
+            // PATCH request to the server
             const response = await fetch(`/${boardingId}`, {
                 method: "PATCH",
                 headers: {
@@ -38,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 const result = await response.json();
                 alert(result.message);
+
+                // Show the hiden for
+                addMissingCompanyInfoDiv.style.display = "block";
             } else {
                 console.error("Error:", response.statusText);
                 alert("Update failed: " + response.statusText);
