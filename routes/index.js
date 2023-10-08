@@ -3,6 +3,7 @@ const router = express.Router();
 const boardingService = require('../services/boardingService'); 
 const updateCompanyInfoService = require('../services/updateCompanyInfoService'); 
 const addMissingCompanyInfoService = require('../services/addMissingCompanyInfoService'); 
+const createSignService = require('../services/createSignService'); 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -76,10 +77,9 @@ router.patch('/:id', async function (req, res, next) {
 router.put('/:id', async function (req, res, next) {
   try {
     const id = req.params.id;
+    const postData = req.body;
 
-    const response = await addMissingCompanyInfoService.addMissingCompanyInfoById(id);
-
-    console.log('Response:', response.data);
+    const response = await addMissingCompanyInfoService.addMissingCompanyInfoById(id, postData);
 
     if (response.status === 200) {
       res.status(200).json({ message: 'Missing company information added successfully' });
@@ -99,6 +99,30 @@ router.put('/:id', async function (req, res, next) {
       console.error('Error Status Code:', error.response.status);
       var statusCode = error.response.status;
     }
+
+    res.status(statusCode || 500).json({ error: error.message });
+  }
+});
+
+/* POST to create sign. */
+router.post('/:id/sign', async function(req, res, next) {
+  try {
+    const id = req.params.id;
+    const data = req.body.formData;
+
+    const response = await createSignService.createSign(id, data);
+
+    res.status(200).json({ message: 'Sign created successfully', id });
+  } catch (error) {
+    if (error.response && error.response.status) {
+      console.error('Error Status Code:', error.response.status);
+      var statusCode = error.response.status;
+    }
+
+    if (error.response && error.response.data.validationErrorMessages) {
+      console.error('Validation Error Messages:', error.response.data.validationErrorMessages);
+    }
+    // console.error('Error:', error);
 
     res.status(statusCode || 500).json({ error: error.message });
   }

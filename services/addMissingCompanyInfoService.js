@@ -1,13 +1,14 @@
-// Assuming the function should be named addMissingCompanyInfoById
 const axios = require('axios');
 
 // Function to add missing company information by ID
-async function addMissingCompanyInfoById(id) {
+async function addMissingCompanyInfoById(id, data) {
   const apiUrl = `https://dev-boarding.vismapay.com/boardings/${id}`;
   const headers = {
     'Content-Type': 'application/json',
     Accept: '*/*',
   };
+
+  console.log('Value of a specific property from data:', data.companyName);
 
   // Hardcoded data for adding missing company info
   const missingCompanyInfo = {
@@ -49,6 +50,7 @@ async function addMissingCompanyInfoById(id) {
       bankIban: "FI2356200920375952",
       bankOwner: "Nalle",
       bankName: "Nordea",
+      ...data,
       companyBillingPostal: "34897",
       companyBillingCity: "AaponKAupunki",
       companyBillingAddressStreet: "SomeAddress",
