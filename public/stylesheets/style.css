@@ -23,6 +23,22 @@ input[type="text"] {
   margin-bottom: 20px; 
 }
 
+input[type="number"] {
+  width: 100%; 
+  padding: 8px; 
+  margin-bottom: 20px; 
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 button[type="submit"] {
   background-color: #00B7FF;
   color: #fff;
@@ -33,11 +49,6 @@ button[type="submit"] {
   margin-top: 10px; 
 }
 
-button[type="submit"] {
-  display: block;
-  margin: 0 auto;
-}
-
 button[type="button"] {
   background-color: #00B7FF;
   color: #fff;
@@ -46,9 +57,11 @@ button[type="button"] {
   cursor: pointer;
   font-weight: bold;
   margin-top: 10px; 
-}
-
-button[type="button"] {
   display: block;
   margin: 0 auto;
+}
+
+#create-sign {
+  background-color: red;
+  color: white; 
 }

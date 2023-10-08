@@ -13,6 +13,8 @@ document.getElementById('create-sign').addEventListener('click', async function 
         if (response.ok) {
             const result = await response.json();
             alert(result.message);
+            // Refresh the page after OK is clicked
+            window.location.href = window.location.href;
         } else {
             console.error('Error:', response.statusText);
             alert('Sign creation failed'); 
