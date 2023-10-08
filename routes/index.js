@@ -18,11 +18,10 @@ router.post('/create-boarding', async function(req, res, next) {
     // Call the boardingService to handle the API request
     const response = await boardingService.createBoarding({ vatNumber, pricePackage });
 
-    // Handle the response here
     console.log('Response:', response.data);
-
-    // Response back to the client if needed
-    res.status(200).json({ message: 'Boarding created successfully' });
+    
+    const id = response.data.id;
+    res.status(200).json({ message: 'Boarding created successfully', id });
   } catch (error) {
     if (error.response && error.response.status) {
       console.error('Error Status Code:', error.response.status);

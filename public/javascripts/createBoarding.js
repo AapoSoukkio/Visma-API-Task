@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("boarding-form"); 
-    const hiddenForm = document.getElementById("hidden-form");
+    const updateCompanyForm = document.getElementById("update-company-form");
     const createBoardingButton = document.getElementById("create-boarding-button");
 
     form.addEventListener("submit", async function (event) {
@@ -24,10 +24,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 const result = await response.json();
+                const boardingIdInput = document.getElementById("boardingId");
+
+                if (boardingIdInput) {
+                    boardingIdInput.value = result.id;
+                  }
+
+                console.log(result.id);
                 alert(result.message);
 
                 // Show the hidden form
-                hiddenForm.style.display = "block";
+                updateCompanyForm.style.display = "block";
             } else {
                 alert("Boarding creation failed: " + response.statusText);
             }
