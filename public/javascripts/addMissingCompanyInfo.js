@@ -2,11 +2,11 @@ document.getElementById('add-missing-company-info').addEventListener('click', fu
     const boardingIdInput = document.getElementById("boardingId");
     const boardingId = boardingIdInput.value; 
 
-    updateCompanyInfo(boardingId);
+    addMissingCompanyInfo(boardingId);
 });
 
 // Function to send a PUT request to the server
-async function updateCompanyInfo(id) {
+async function addMissingCompanyInfo(id) {
     try {
         console.log("ID: " + id);
         const response = await fetch(`/${id}`, {
@@ -21,7 +21,7 @@ async function updateCompanyInfo(id) {
             alert(result.message); 
         } else {
             console.error('Error:', response.statusText);
-            alert('Company information update failed'); 
+            alert('Company information adding failed'); 
         }
     } catch (error) {
         console.error('Network error:', error);

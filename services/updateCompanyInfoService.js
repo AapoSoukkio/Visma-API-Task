@@ -2,7 +2,7 @@ const axios = require('axios');
 
 // Function to update company information
 async function updateCompanyInfo(id, formData) {
-    const apiUrl = `https://boarding.vismapay.com/boardings/${id}`;
+    const apiUrl = `https://dev-boarding.vismapay.com/boardings/${id}`;
     const headers = {
       'Content-Type': 'application/json',
       Accept: '*/*',

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const boardingService = require('../services/boardingService'); 
 const updateCompanyInfoService = require('../services/updateCompanyInfoService'); 
+const addMissingCompanyInfoService = require('../services/addMissingCompanyInfoService'); 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -58,6 +59,38 @@ router.patch('/:id', async function (req, res, next) {
       }
 
       res.status(response.status).json({ error: 'Company information update failed' });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+
+    if (error.response && error.response.status) {
+      console.error('Error Status Code:', error.response.status);
+      var statusCode = error.response.status;
+    }
+
+    res.status(statusCode || 500).json({ error: error.message });
+  }
+});
+
+/* PUT to add missing company info. */
+router.put('/:id', async function (req, res, next) {
+  try {
+    const id = req.params.id;
+
+    const response = await addMissingCompanyInfoService.addMissingCompanyInfoById(id);
+
+    console.log('Response:', response.data);
+
+    if (response.status === 200) {
+      res.status(200).json({ message: 'Missing company information added successfully' });
+    } else {
+      console.error('Error Status Code:', response.status);
+
+      if (response.data && response.data.validationErrorMessages) {
+        console.error('Validation Error Messages:', response.data.validationErrorMessages);
+      }
+
+      res.status(response.status).json({ error: 'Adding missing company information failed' });
     }
   } catch (error) {
     console.error('Error:', error);
