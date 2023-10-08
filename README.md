@@ -72,7 +72,7 @@ Here are the steps to run the project:
 
 2. Navigate to the project directory
 
-3. Install the project's dependencies:
+3. In the root folder of the application, run this command shown below to install the project's dependencies:
     ```bash
     npm install
     ```

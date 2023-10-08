@@ -79,7 +79,7 @@ router.put('/:id', async function (req, res, next) {
     const response = await addMissingCompanyInfoService.addMissingCompanyInfoById(id, postData);
 
     if (response.status === 200) {
-      res.status(200).json({ message: 'Missing company information added successfully' });
+      res.status(200).json({ message: 'Required company information added successfully' });
     } else {
       console.error('Error Status Code:', response.status);
 
