@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         try {
-            // Send a POST request to the server
+            // Send a PATCH request to the server
             const response = await fetch(`/${boardingId}`, {
                 method: "PATCH",
                 headers: {
@@ -37,13 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 const result = await response.json();
-                // Do something with the response if needed
+                alert(result.message);
             } else {
                 console.error("Error:", response.statusText);
+                alert("Update failed: " + response.statusText);
             }
         } catch (error) {
             console.error("Network error:", error);
-            // Handle network errors if needed
+            alert("Network error");
         }
     });
 });
