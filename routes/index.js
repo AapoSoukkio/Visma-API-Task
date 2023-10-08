@@ -9,7 +9,7 @@ const createSignService = require('../services/createSignService');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Visma Boarding Creator' });
+  res.render('index', { title: 'VismaPay API' });
 });
 
 /* POST to create boarding. */
